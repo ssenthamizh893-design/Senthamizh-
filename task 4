@@ -1,0 +1,65 @@
+# Import libraries
+import numpy as np
+import os
+import cv2
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+
+# Path to dataset (update with your dataset path)
+DATASET_PATH = "dataset/gestures"  
+
+IMG_SIZE = 64   # Resize all images to 64x64
+CATEGORIES = os.listdir(DATASET_PATH)  # gesture classes
+
+# Load dataset
+def load_data():
+    data = []
+    labels = []
+    for idx, category in enumerate(CATEGORIES):
+        path = os.path.join(DATASET_PATH, category)
+        for img in os.listdir(path):
+            try:
+                img_array = cv2.imread(os.path.join(path, img), cv2.IMREAD_GRAYSCALE)
+                resized_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
+                data.append(resized_array)
+                labels.append(idx)
+            except Exception as e:
+                pass
+    return np.array(data), np.array(labels)
+
+print("Loading dataset...")
+X, y = load_data()
+print(f"Dataset loaded: {X.shape[0]} samples, {len(CATEGORIES)} classes")
+
+# Preprocess
+X = X.reshape(-1, IMG_SIZE, IMG_SIZE, 1) / 255.0  # normalize
+y = to_categorical(y, num_classes=len(CATEGORIES))
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Build CNN model
+model = Sequential([
+    Conv2D(32, (3,3), activation="relu", input_shape=(IMG_SIZE, IMG_SIZE, 1)),
+    MaxPooling2D((2,2)),
+    
+    Conv2D(64, (3,3), activation="relu"),
+    MaxPooling2D((2,2)),
+    
+    Flatten(),
+    Dense(128, activation="relu"),
+    Dropout(0.5),
+    Dense(len(CATEGORIES), activation="softmax")
+])
+
+model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+
+# Train model
+print("Training model...")
+history = model.fit(X_train, y_train, epochs=10, batch_size=32, validation_split=0.2)
+
+# Evaluate model
+loss, acc = model.evaluate(X_test, y_test)
+print(f"\nModel Accuracy: {acc:.2f}")
