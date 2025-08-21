@@ -1,0 +1,56 @@
+# Import required libraries
+import numpy as np
+import os
+import cv2
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, accuracy_score
+
+# Path to dataset (update with your dataset path)
+# Kaggle Cats and Dogs dataset usually has 'train/cat' and 'train/dog'
+DATASET_PATH = "dataset/train"  
+
+# Image size for resizing (to reduce computation)
+IMG_SIZE = 64  
+
+# Function to load images
+def load_data(dataset_path):
+    data = []
+    labels = []
+    categories = ["cat", "dog"]
+
+    for category in categories:
+        path = os.path.join(dataset_path, category)
+        label = categories.index(category)
+
+        for img in os.listdir(path):
+            try:
+                img_array = cv2.imread(os.path.join(path, img), cv2.IMREAD_GRAYSCALE)
+                resized_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
+                data.append(resized_array.flatten())  # flatten to 1D
+                labels.append(label)
+            except Exception as e:
+                pass
+    
+    return np.array(data), np.array(labels)
+
+# Load dataset
+print("Loading dataset...")
+X, y = load_data(DATASET_PATH)
+print(f"Dataset loaded: {X.shape[0]} samples")
+
+# Split dataset into train and test
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train SVM model
+print("Training SVM model...")
+svm = SVC(kernel="linear", C=1)  # linear kernel
+svm.fit(X_train, y_train)
+
+# Predictions
+y_pred = svm.predict(X_test)
+
+# Evaluation
+print("\nModel Evaluation:")
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred, target_names=["Cat", "Dog"]))
