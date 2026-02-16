@@ -1,0 +1,36 @@
+# Import libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+# Sample dataset (Mall Customer Dataset)
+data = {
+    'CustomerID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Age': [19, 21, 20, 23, 31, 35, 40, 45, 51, 60],
+    'Annual Income (k$)': [15, 16, 17, 18, 25, 28, 40, 42, 60, 70],
+    'Spending Score (1-100)': [39, 81, 6, 77, 40, 65, 75, 35, 98, 50]
+}
+
+# Convert into DataFrame
+df = pd.DataFrame(data)
+
+# Select features for clustering
+X = df[['Annual Income (k$)', 'Spending Score (1-100)']]
+
+# Apply K-Means clustering
+kmeans = KMeans(n_clusters=3, random_state=42)
+df['Cluster'] = kmeans.fit_predict(X)
+
+# Print clustered data
+print(df)
+
+# Plot clusters
+plt.scatter(X['Annual Income (k$)'], X['Spending Score (1-100)'], 
+            c=df['Cluster'], cmap='rainbow', s=100)
+plt.scatter(kmeans.cluster_centers_[:,0], kmeans.cluster_centers_[:,1], 
+            color='black', marker='X', s=200, label='Centroids')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.title('Customer Segmentation using K-Means')
+plt.legend()
+plt.show()
