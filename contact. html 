@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact">
+<title>Contact</title>
+</head>
+<body>
+
+<header>
+<h1>Contact Me</h1>
+<nav aria-label="Main Navigation">
+<a href="index.html">Home</a> |
+<a href="about.html">About</a> |
+<a href="projects.html">Projects</a> |
+<a href="contact.html">Contact</a>
+</nav>
+</header>
+
+<main>
+<section>
+<h2>Contact Form</h2>
+
+<form aria-label="Contact Form">
+<label>Name</label><br>
+<input type="text" required><br><br>
+
+<label>Email</label><br>
+<input type="email" required><br><br>
+
+<label>Message</label><br>
+<textarea rows="5" required></textarea><br><br>
+
+<button type="submit">Send</button>
+</form>
+
+</section>
+</main>
+
+<footer>
+<p>&copy; 2026 S. Senthamizh Selvi</p>
+</footer>
+
+</body>
+</html>
