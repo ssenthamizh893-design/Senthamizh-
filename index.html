@@ -12,12 +12,12 @@
     <h2>To-Do List</h2>
 
     <input type="text" id="taskInput" placeholder="Enter a task">
-    <button onclick="addTask()">Add</button>
+    <button id="addBtn">Add</button>
 
     <div class="filters">
-        <button onclick="filterTasks('all')">All</button>
-        <button onclick="filterTasks('active')">Active</button>
-        <button onclick="filterTasks('completed')">Completed</button>
+        <button data-filter="all">All</button>
+        <button data-filter="active">Active</button>
+        <button data-filter="completed">Completed</button>
     </div>
 
     <ul id="taskList"></ul>
@@ -25,5 +25,5 @@
 
 <script src="script.js"></script>
 
-</body
+</body>
 </html>
