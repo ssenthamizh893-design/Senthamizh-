@@ -1,45 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Contact">
-<title>Contact</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Contact Senthamizh through the accessible contact form.">
+
+    <title>Contact | Senthamizh</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
-<h1>Contact Me</h1>
-<nav aria-label="Main Navigation">
-<a href="index.html">Home</a> |
-<a href="about.html">About</a> |
-<a href="projects.html">Projects</a> |
-<a href="contact.html">Contact</a>
-</nav>
+    <nav aria-label="Main Navigation">
+        <h1>Senthamizh</h1>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
-<section>
-<h2>Contact Form</h2>
 
-<form aria-label="Contact Form">
-<label>Name</label><br>
-<input type="text" required><br><br>
+    <section class="contact" aria-labelledby="contact-title">
 
-<label>Email</label><br>
-<input type="email" required><br><br>
+        <h2 id="contact-title">Contact Me</h2>
 
-<label>Message</label><br>
-<textarea rows="5" required></textarea><br><br>
+        <form action="#" method="post">
 
-<button type="submit">Send</button>
-</form>
+            <div>
+                <label for="name">Full Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    aria-required="true"
+                    autocomplete="name">
+            </div>
 
-</section>
+            <div>
+                <label for="email">Email Address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    aria-required="true"
+                    autocomplete="email">
+            </div>
+
+            <div>
+                <label for="subject">Subject</label>
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required>
+            </div>
+
+            <div>
+                <label for="message">Message</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="6"
+                    required></textarea>
+            </div>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+    </section>
+
 </main>
 
 <footer>
-<p>&copy; 2026 S. Senthamizh Selvi</p>
+    <p>&copy; 2026 Senthamizh. All Rights Reserved.</p>
 </footer>
 
 </body>
