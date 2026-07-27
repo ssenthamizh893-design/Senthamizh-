@@ -1,35 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Projects">
-<title>Projects</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Projects developed by Senthamizh.">
+
+    <title>Projects | Senthamizh</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <header>
-<h1>My Projects</h1>
-<nav aria-label="Main Navigation">
-<a href="index.html">Home</a> |
-<a href="about.html">About</a> |
-<a href="projects.html">Projects</a> |
-<a href="contact.html">Contact</a>
-</nav>
+    <nav aria-label="Main Navigation">
+        <h1>Senthamizh</h1>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html" aria-current="page">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 </header>
 
 <main>
-<section>
-<h2>Project 1</h2>
-<article>
-<h3>Crop Yield Prediction System</h3>
-<p>Developed using Python and Machine Learning.</p>
-</article>
-</section>
+
+    <section aria-labelledby="projects-title">
+        <h2 id="projects-title">My Projects</h2>
+
+        <article class="project-card">
+            <h3>Interactive To-Do List</h3>
+
+            <p>
+                A JavaScript-based task management application
+                with add, edit, delete, filtering and local storage
+                functionality.
+            </p>
+
+            <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+        </article>
+
+        <article class="project-card">
+            <h3>Crop Yield Prediction</h3>
+
+            <p>
+                A machine learning project designed to predict crop
+                yield using agricultural data.
+            </p>
+
+            <p><strong>Technologies:</strong> Python, Machine Learning</p>
+        </article>
+
+        <article class="project-card">
+            <h3>Personal Portfolio</h3>
+
+            <p>
+                An accessible personal portfolio website created
+                using semantic HTML5 and CSS.
+            </p>
+
+            <p><strong>Technologies:</strong> HTML5, CSS3</p>
+        </article>
+
+    </section>
+
 </main>
 
 <footer>
-<p>&copy; 2026 S. Senthamizh Selvi</p>
+    <p>&copy; 2026 Senthamizh. All Rights Reserved.</p>
 </footer>
 
 </body>
